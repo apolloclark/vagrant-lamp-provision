@@ -1,0 +1,13 @@
+[mysqld]
+#
+# McAfee mysql-audit plugin
+#
+# https://github.com/mcafee/mysql-audit/wiki/Configuration
+# https://github.com/mcafee/mysql-audit/wiki/Troubleshooting#checksum-validation
+# https://github.com/mcafee/mysql-audit/issues/78
+#
+audit_json_log_file = /var/log/mysql/audit.log
+audit_json_file = ON
+audit_force_record_logins = ON
+audit_validate_checksum = OFF
+plugin-load=AUDIT=libaudit_plugin.so
