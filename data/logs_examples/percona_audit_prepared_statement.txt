@@ -1,0 +1,81 @@
+{
+  "audit_record": {
+    "name": "Connect",
+    "record": "14305_2017-05-01T13:58:06",
+    "timestamp": "2017-05-01T14:06:20 UTC",
+    "connection_id": "37",
+    "status": 0,
+    "user": "test-user",
+    "priv_user": "test-user",
+    "os_login": "",
+    "proxy_user": "",
+    "host": "localhost",
+    "ip": "",
+    "db": "testdb"
+  }
+}
+{
+  "audit_record": {
+    "name": "Prepare",
+    "record": "14306_2017-05-01T13:58:06",
+    "timestamp": "2017-05-01T14:06:20 UTC",
+    "command_class": "error",
+    "connection_id": "37",
+    "status": 0,
+    "sqltext": "",
+    "user": "test-user[test-user] @ localhost []",
+    "host": "localhost",
+    "os_user": "",
+    "ip": "",
+    "db": "testdb"
+  }
+}
+
+{
+  "audit_record": {
+    "name": "Execute",
+    "record": "14307_2017-05-01T13:58:06",
+    "timestamp": "2017-05-01T14:06:20 UTC",
+    "command_class": "error",
+    "connection_id": "37",
+    "status": 0,
+    "sqltext": "SELECT account_email, account_pass FROM accounts WHERE account_email = ? AND account_pass = md5(?)",
+    "user": "test-user[test-user] @ localhost []",
+    "host": "localhost",
+    "os_user": "",
+    "ip": "",
+    "db": "testdb"
+  }
+}
+{
+  "audit_record": {
+    "name": "Close stmt",
+    "record": "14308_2017-05-01T13:58:06",
+    "timestamp": "2017-05-01T14:06:20 UTC",
+    "command_class": "error",
+    "connection_id": "37",
+    "status": 0,
+    "sqltext": "",
+    "user": "test-user[test-user] @ localhost []",
+    "host": "localhost",
+    "os_user": "",
+    "ip": "",
+    "db": "testdb"
+  }
+}
+{
+  "audit_record": {
+    "name": "Quit",
+    "record": "14309_2017-05-01T13:58:06",
+    "timestamp": "2017-05-01T14:06:20 UTC",
+    "connection_id": "37",
+    "status": 0,
+    "user": "test-user",
+    "priv_user": "test-user",
+    "os_login": "",
+    "proxy_user": "",
+    "host": "localhost",
+    "ip": "",
+    "db": "testdb"
+  }
+}
