@@ -37,7 +37,7 @@ Vagrant.configure(2) do |config|
         # setup local apt-get cache
         if Vagrant.has_plugin?("vagrant-cachier")
             # Configure cached packages to be shared between instances of the same base box.
-            # More info on the "Usage" link above
+            # https://github.com/fgrehm/vagrant-cachier
             override.cache.scope = :box
         end
     end
