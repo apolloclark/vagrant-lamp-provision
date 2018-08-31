@@ -2,11 +2,11 @@
 
 // respond to OPTIONS request
 if ('OPTIONS' == $_SERVER['REQUEST_METHOD']){
-    
+	
     http_response_code(200);
-    header('Access-Control-Allow-Origin "*"');
-    header('Access-Control-Allow-Methods "POST, GET, OPTIONS"');
-    die();
+    # header('Access-Control-Allow-Origin "*"');
+    #header('Access-Control-Allow-Methods "POST, GET, OPTIONS"');
+    exit();
 }
 
 // ensure we only handle GET requests
@@ -30,16 +30,19 @@ $output = "";
 if ('POST' == $_SERVER['REQUEST_METHOD']) {
 
     // check for the $_POST variables
-     if( empty($_POST['username'])
-        && empty($_POST['password']) ) {
+     if( (!array_key_exists('username', $_POST)
+	      && !array_key_exists('password', $_POST))
+        || (empty($_POST['username'])
+        && empty($_POST['password']))
+     ) {
         $output = "Missing POST['username'] and POST['password'] variables";
     } else {
         // check for the $_POST['username'] variable
-        if (empty($_POST['username']) ) {
+        if (!array_key_exists('username', $_POST) || empty($_POST['username']) ) {
             $output = "Missing POST['username'] variable";
         }
         // check for the $_POST['password'] variable
-        if (empty($_POST['password']) ) {
+        if (!array_key_exists('password', $_POST) || empty($_POST['password']) ) {
             $output = "Missing POST['password'] variable";
         }
     }

@@ -4,8 +4,8 @@
 if ('OPTIONS' == $_SERVER['REQUEST_METHOD']){
     
     http_response_code(200);
-    header('Access-Control-Allow-Origin "*"');
-    header('Access-Control-Allow-Methods "POST, GET, OPTIONS"');
+    #header('Access-Control-Allow-Origin "*"');
+    #header('Access-Control-Allow-Methods "POST, GET, OPTIONS"');
     die();
 }
 
