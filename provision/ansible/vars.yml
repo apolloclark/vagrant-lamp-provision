@@ -29,9 +29,9 @@ apache_vhosts:
     serveralias: "10.0.2.15"
     documentroot: "/var/www/html/public/"
     extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/html/public/"
-      ErrorLog /var/log/apache2/error_log.log
-      CustomLog /var/log/apache2/access_log.log common
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/html/public/$1
+      ErrorLog /var/log/apache2/site_error.log
+      CustomLog /var/log/apache2/site_access.log common
       SetEnv APPLICATION_ENV production
       Header set Access-Control-Allow-Origin "*"
 apache_mods_enabled:
@@ -44,11 +44,13 @@ apache_mods_enabled:
   - security2.load
   
 # apolloclark/ansible-role-apache-modsecurity
-sec_audit_log: "/var/log/apache2/apache_audit_log.log"
+sec_audit_log: "/var/log/apache2/site_audit.log"
 
 
 
 # https://github.com/geerlingguy/ansible-role-php/blob/master/defaults/main.yml
+# http://php.net/releases/
+# 5.6.37
 php_version: '5.6'
 php_enable_apc: false
 php_packages:
@@ -59,11 +61,13 @@ php_packages:
   - php5.6-gd
   - php5.6-fpm
   - php5.6-json
+  - php5.6-mbstring
   - php5.6-mcrypt
   - php5.6-opcache
   - php5.6-readline
   - php5.6-xml
   - php5.6-zip
+  - phpunit
 php_enable_php_fpm: true
 php_fpm_listen: "127.0.0.1:9000"
 php_fpm_listen_allowed_clients: "127.0.0.1"
@@ -76,17 +80,22 @@ php_fpm_pm_max_spare_servers: 5
 
 # https://github.com/geerlingguy/ansible-role-mysql/blob/master/defaults/main.yml
 # https://github.com/geerlingguy/ansible-role-mysql/blob/master/templates/my.cnf.j2
+# https://dev.mysql.com/doc/relnotes/mysql/5.7/en/
+# 5.7.23
 mysql_version: "5.7.18"
 mysql_packages:
   - mysql-common
   - mysql-community-server
 mysql_user_password_update: true
 mysql_root_password_update: true
+mysql_root_password: "toor"
 mysql_config_include_files:
   - src: "root-my.cnf.j2"
 mysql_config_include_dir: "/etc/mysql/conf.d/"
 
 # apolloclark/mysql-mcafee-audit
+# https://github.com/mcafee/mysql-audit/releases
+# 1.1.6
 mcafee_plugin_version: "1.1.4-725"
 audit_json_log_file: "/var/log/mysql/mysql_audit.log"
 
@@ -94,4 +103,4 @@ audit_json_log_file: "/var/log/mysql/mysql_audit.log"
 mysql_db_name: "testdb"
 mysql_db_file: "/vagrant/database.sql"
 mysql_login_user: "root"
-mysql_login_password: "root"
+mysql_login_password: "toor"
