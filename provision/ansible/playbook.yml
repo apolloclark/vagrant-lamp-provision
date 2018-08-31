@@ -16,11 +16,10 @@
 
     - apolloclark.mysql
     - apolloclark.mysql-mcafee-audit
-    # - apolloclark.mysql-deploy
+    - apolloclark.mysql-deploy
 
     - geerlingguy.php-versions
     - geerlingguy.php
     - geerlingguy.apache-php-fpm
     - geerlingguy.php-mysql
     - geerlingguy.composer
-    - geerlingguy.java
