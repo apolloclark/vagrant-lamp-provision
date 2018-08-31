@@ -24,7 +24,7 @@ vagrant up
 
 vagrant ssh
 
-mysql -h 127.0.0.1 -u root -p
+mysql -h 127.0.0.1 -u root -ptoor
 ```
 
 ## Bash
@@ -67,9 +67,12 @@ Puppet Modules:
 ## PHP Tests
 ```shell
 vagrant ssh
-cd /var/www/html/example/public
+cd /var/www/html/public
 
-# use Composer
+# install Composer dependencies
+composer install --no-progress
+
+# use Composer, run all tests
 composer test
 
 # use PHPUnit, run all tests
@@ -95,7 +98,8 @@ mysql -h 127.0.0.1 -u root -ptoor testdb
 mysql -h 127.0.0.1 -u test-user -pH7SCw60iKG2jjW%G testdb
 
 # check current allowed users
-SELECT User, Host, Password FROM mysql.user;
+mysql -h 127.0.0.1 -u test-user -pH7SCw60iKG2jjW%G testdb \
+  -e "SELECT User, Host, authentication_string FROM mysql.user;"
 
 # check permissions
 SELECT User,Host,Password,Grant_priv,Super_priv FROM mysql.user;
@@ -109,6 +113,10 @@ SELECT User,Host,Password,Grant_priv,Super_priv FROM mysql.user;
 sudo nano /etc/apache2/apache2.conf
 sudo nano /etc/apache2/sites-available/15-example.conf
 sudo nano /etc/apache2/conf-available/25-example.conf
+
+sudo nano /etc/apache2/conf-available/php5.6-fpm.conf
+sudo nano /etc/apache2/conf-available/modsecurity.conf
+sudo nano /etc/apache2/sites-available/vhosts.conf
 
 # PHP
 sudo nano /etc/php/5.6/apache2/php.ini
@@ -125,9 +133,9 @@ SHOW GLOBAL VARIABLES like 'audit%';
 ## Logs
 ```shell
 # Site
-sudo nano /var/www/html/example/logs/audit_log.log
-sudo nano /var/www/html/example/logs/access_log.log
-sudo nano /var/www/html/example/logs/error_log.log
+sudo nano /var/log/apache2/site_audit.log
+sudo nano /var/log/apache2/site_access.log
+sudo nano /var/log/apache2/site_error.log
 
 # Apache
 sudo nano /var/log/apache2/access.log
@@ -136,6 +144,8 @@ sudo nano /var/log/apache2/error.log
 
 # PHP
 sudo nano /var/log/php_error.log
+sudo nano /var/log/php5.6-fpm.log
+
 
 # MySQL
 sudo grep -F 'audit' /var/log/mysql/error.log
