@@ -21,7 +21,7 @@ cd ./vagrant-lamp-provision/provision/bash
 find . -name '*.*' | xargs wc -l
 2254 total
 
-cd ./vagrant-lamp-provision/provision/bash
+cd ./vagrant-lamp-provision/provision/puppet
 find . -name '*.pp' | xargs wc -l
 231 total
 
