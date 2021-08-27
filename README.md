@@ -13,6 +13,25 @@ the distro I use most often. This demo also includes security logging and
 monitoring with Apache mod_security2 and MySQL McAfee audit plugin.
 
 
+
+## Results
+
+```shell
+cd ./vagrant-lamp-provision/provision/bash
+find . -name '*.*' | xargs wc -l
+2254 total
+
+cd ./vagrant-lamp-provision/provision/bash
+find . -name '*.pp' | xargs wc -l
+231 total
+
+cd ./vagrant-lamp-provision/provision/ansible
+find . -name '*.*' | xargs wc -l
+171 total
+```
+
+
+
 ## Deploy
 
 ```shell
